@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -32,33 +33,23 @@ public class StudentGroup implements StudentArrayOperation {
 	@Override
 	public Student[] getStudents() {
 		// Add your implementation here
-                
-		
+
 		return students;
 	}
 
 	@Override
-	public void setStudents(Student[] students){
+	public void setStudents(Student[] students) throws IllegalArgumentException{
 		// Add your implementation here
-               try{
+               
                    this.students=students;
-                   throw new IllegalArgumentException();
-               }catch(IllegalArgumentException e){
-                   
-               }
+                             
                 
 	}
 
 	@Override
-	public Student getStudent(int index) {
+	public Student getStudent(int index) throws IllegalArgumentException{
 		// Add your implementation here
-                try{
-                    if(index<0 || index>=students.length){
-                    throw new IllegalArgumentException();
-                    }
-                }catch(IllegalArgumentException e){
-                    
-                }
+               
 		return students[index];
 	}
 
@@ -180,10 +171,10 @@ public class StudentGroup implements StudentArrayOperation {
                 Student temp;
                 for(int i=0;i<students.length;i++){
                     for (int j = 0; j < students.length; j++) {
-                        if((students[j].compareTo(students[i]))==1){
-                            temp=students[j];
-                            students[j]=students[j+1];
-                            students[j+1]=temp;
+                        if((getStudent(j).compareTo(getStudent(i)))==1){
+                            temp=getStudent(j);
+                            setStudent(getStudent(j+1),j);
+                            setStudent(temp,j+1);
                         }
                     }
                 }
